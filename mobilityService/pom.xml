@@ -11,7 +11,7 @@
 	<groupId>com.smartCity</groupId>
 	<artifactId>mobilityService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>mobilityService</name>
 	<description>Project SoC</description>
 	<url/>
