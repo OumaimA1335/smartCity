@@ -1,13 +1,20 @@
 package com.smartCity.finesService;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+import com.smartCity.finesService.services.CitizenService;
+import com.smartCity.finesService.services.FinesService;
+
+import jakarta.xml.ws.Endpoint;
+
 public class FinesServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FinesServiceApplication.class, args);
+	
+		 System.out.println("Starting SOAP Services ...\n");
+		 System.out.println("Citizen service started on port 8084...\n");
+		 Endpoint.publish("http://0.0.0.0:8084/ws/citizen", new CitizenService());
+		 System.out.println("Fines service started on port 8085...\n");
+		 Endpoint.publish("http://0.0.0.0:8085/ws/fines", new FinesService());
 	}
 
 }

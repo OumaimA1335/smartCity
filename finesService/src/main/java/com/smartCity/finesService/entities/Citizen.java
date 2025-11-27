@@ -3,26 +3,19 @@ package com.smartCity.finesService.entities;
 
 
 
-import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+
+
+@XmlRootElement(name="citizen")                
+@XmlAccessorType(XmlAccessType.FIELD)    
 public class Citizen {
-   @Id 
-   @GeneratedValue(strategy=GenerationType.IDENTITY)
+  
    private Long id;
    private String nationalIdNumber;
    private String FullName;
@@ -31,6 +24,76 @@ public class Citizen {
    private String phoneNumber;
    private String address;
    private String profession;
-   @OneToMany(mappedBy="citizen")
-   private List<Fine> listFines;
+   
+   
+   
+public Citizen(String nationalIdNumber, String fullName, String gender, String nationnality, String phoneNumber,
+		String address, String profession) {
+	super();
+	this.nationalIdNumber = nationalIdNumber;
+	FullName = fullName;
+	this.gender = gender;
+	this.nationnality = nationnality;
+	this.phoneNumber = phoneNumber;
+	this.address = address;
+	this.profession = profession;
+}
+
+public Citizen() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+public Long getId() {
+	return id;
+}
+public void setId(Long id) {
+	this.id = id;
+}
+public String getNationalIdNumber() {
+	return nationalIdNumber;
+}
+public void setNationalIdNumber(String nationalIdNumber) {
+	this.nationalIdNumber = nationalIdNumber;
+}
+public String getFullName() {
+	return FullName;
+}
+public void setFullName(String fullName) {
+	FullName = fullName;
+}
+public String getGender() {
+	return gender;
+}
+public void setGender(String gender) {
+	this.gender = gender;
+}
+public String getNationnality() {
+	return nationnality;
+}
+public void setNationnality(String nationnality) {
+	this.nationnality = nationnality;
+}
+public String getPhoneNumber() {
+	return phoneNumber;
+}
+public void setPhoneNumber(String phoneNumber) {
+	this.phoneNumber = phoneNumber;
+}
+public String getAddress() {
+	return address;
+}
+public void setAddress(String address) {
+	this.address = address;
+}
+public String getProfession() {
+	return profession;
+}
+public void setProfession(String profession) {
+	this.profession = profession;
+}
+   
+
+
+   
 }
