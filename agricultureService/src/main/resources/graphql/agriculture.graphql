@@ -1,0 +1,55 @@
+# ===== Entities =====
+
+type Farm {
+  id: ID!
+  name: String!
+  location: String!
+  produces: [Produce!]!    # relation ManyToMany -> liste des produits
+}
+
+type Produce {
+  id: ID!
+  name: String!
+  quantityPesticides: Int!
+  quotaMaxPesticides: Int!
+  operations: [OperationPlan!]!
+  farms: [Farm!]!
+}
+
+type OperationPlan {
+  id: ID!
+  operationType: String!
+  plannedDate: String!    # ou utilisez un scalar DateTime si vous l'ajoutez
+  produces: [Produce!]!
+}
+
+# ===== Queries =====
+
+type Query {
+  # Farm
+  farms: [Farm!]!
+  farmById(id: ID!): Farm
+
+  # Produce
+  produces: [Produce!]!
+  produceById(id: ID!): Produce
+
+  # OperationPlan
+  operationPlans: [OperationPlan!]!
+  operationPlanById(id: ID!): OperationPlan
+}
+
+# ===== Mutations =====
+
+type Mutation {
+  # Farm
+  addFarm(name: String!, location: String!): Farm
+  assignProduceToFarm(farmId: ID!, produceId: ID!): Farm
+
+  # Produce
+  addProduce(name: String!, quantityPesticides: Int!, quotaMaxPesticides: Int!): Produce
+  assignProduceToOperationPlan(produceId: ID!, planId: ID!): OperationPlan
+
+  # OperationPlan
+  addOperationPlan(operationType: String!, plannedDate: String!): OperationPlan
+}
