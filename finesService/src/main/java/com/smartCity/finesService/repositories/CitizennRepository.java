@@ -88,8 +88,9 @@ public class CitizennRepository {
     
 
     // Récupérer un citoyen avec ses amendes
-    public Citizen findByIdWithFines(Long id) throws SQLException {
-    	 conn = ConnectionDataBase.getConnection();
+    public List<Fine> findByIdWithFines(Long id) throws SQLException {
+    	conn = ConnectionDataBase.getConnection();
+    	List<Fine> fines = new ArrayList<>();
         Citizen citizen = null;
 
         // récupérer le citoyen
@@ -111,7 +112,7 @@ public class CitizennRepository {
             PreparedStatement psFines = conn.prepareStatement("SELECT * FROM fine WHERE citizen_id = ?");
             psFines.setLong(1, id);
             ResultSet rsFines = psFines.executeQuery();
-            List<Fine> fines = new ArrayList<>();
+         
             while(rsFines.next()) {
                 Fine fine = new Fine();
                 fine.setId(rsFines.getLong("id"));
@@ -121,6 +122,8 @@ public class CitizennRepository {
             }
         }
 
-        return citizen;
+        return fines;
     }
+    
+
 }

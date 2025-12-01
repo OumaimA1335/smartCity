@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.smartCity.weather.services.location";
+option java_outer_classname = "LocationProto";
+
+service LocationService {
+  rpc getLocation(LocationRequest) returns (LocationResponse);
+  rpc getAllLocations(AllLocationRequest) returns (AllLocationResponse);
+  rpc addLocation(AddLocationRequest) returns (LocationResponse);
+}
+
+message AllLocationRequest {
+  // message vide pour la requête
+}
+
+message LocationRequest {
+  int64 id = 1;
+}
+
+message AddLocationRequest {
+  string city = 1;
+  string country = 2;
+  double latitude = 3;
+  double longitude = 4;
+}
+
+message LocationResponse {
+  int64 id = 1;
+  string city = 2;
+  string country = 3;
+  double latitude = 4;
+  double longitude = 5;
+}
+
+message AllLocationResponse {
+  repeated LocationResponse locations = 1;
+}

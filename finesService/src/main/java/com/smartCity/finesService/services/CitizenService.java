@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.smartCity.finesService.entities.Citizen;
+import com.smartCity.finesService.entities.Fine;
 import com.smartCity.finesService.repositories.CitizennRepository;
 
 import jakarta.jws.WebMethod;
@@ -24,7 +25,7 @@ public class CitizenService {
 	    }
 	    
 	    @WebMethod(operationName = "getCitizenFines")
-	    public Citizen getCitizenFines(@WebParam(name = "id") Long id) {
+	    public List<Fine> getCitizenFines(@WebParam(name = "id") Long id) {
 	        try {
 				return citizenRepo.findByIdWithFines(id);
 			} catch (SQLException e) {

@@ -19,7 +19,7 @@ type Produce {
 type OperationPlan {
   id: ID!
   operationType: String!
-  plannedDate: String!    # ou utilisez un scalar DateTime si vous l'ajoutez
+  plannedDate: String!  
   produces: [Produce!]!
 }
 

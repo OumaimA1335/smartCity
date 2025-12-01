@@ -41,6 +41,15 @@ public class FinesService {
 			}
 			return null;
 	    }
+	    @WebMethod(operationName = "getFineByIdFineAndIdCitizen")
+	    public Fine getFineByIdFineAndIdCitizen(@WebParam(name = "idFine") Long idFine,@WebParam(name="idCitizen") Long idCitizen) {
+	        try {
+				return fineRepo.findFineByIdCitizenAndByIdFine(idCitizen, idFine);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return null;
+	    }
 	 
 	    @WebMethod(operationName = "addFine")
 	    public Fine addFine(@WebParam(name="fine")Fine fine) {

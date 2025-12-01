@@ -72,4 +72,29 @@ public class FinesRepository {
 
         return fine;
     }
+    // Récupérer un citoyen avec ses amendes
+    public Fine findFineByIdCitizenAndByIdFine(Long idCitizen , Long idFine) throws SQLException {
+
+        String query = "SELECT * FROM fine WHERE id = ? AND citizen_id = ?";
+
+        try (Connection conn = ConnectionDataBase.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setLong(1, idFine);
+            ps.setLong(2, idCitizen);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Fine fine = new Fine();
+                    fine.setId(rs.getLong("id"));
+                    fine.setAmount(rs.getDouble("amount"));
+                    fine.setCitizen_id(rs.getLong("citizen_id"));
+                    return fine;
+                }
+            }
+        }
+
+        return null;  
+    }
+
 }
