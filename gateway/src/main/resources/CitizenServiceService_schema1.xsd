@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://services.finesService.smartCity.com/" xmlns:tns="http://services.finesService.smartCity.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="addCitizen" type="tns:addCitizen"/>
+
+  <xs:element name="addCitizenResponse" type="tns:addCitizenResponse"/>
+
+  <xs:element name="citizen" type="tns:citizen"/>
+
+  <xs:element name="getCitizenById" type="tns:getCitizenById"/>
+
+  <xs:element name="getCitizenByIdResponse" type="tns:getCitizenByIdResponse"/>
+
+  <xs:element name="getCitizenFines" type="tns:getCitizenFines"/>
+
+  <xs:element name="getCitizenFinesResponse" type="tns:getCitizenFinesResponse"/>
+
+  <xs:element name="getCitizens" type="tns:getCitizens"/>
+
+  <xs:element name="getCitizensResponse" type="tns:getCitizensResponse"/>
+
+  <xs:complexType name="getCitizenFines">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getCitizenFinesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:citizen" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="citizen">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="nationalIdNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="FullName" type="xs:string" minOccurs="0"/>
+      <xs:element name="gender" type="xs:string" minOccurs="0"/>
+      <xs:element name="nationnality" type="xs:string" minOccurs="0"/>
+      <xs:element name="phoneNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="address" type="xs:string" minOccurs="0"/>
+      <xs:element name="profession" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addCitizen">
+    <xs:sequence>
+      <xs:element name="citizen" type="tns:citizen" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addCitizenResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:citizen" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getCitizenById">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getCitizenByIdResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:citizen" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getCitizens">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getCitizensResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:citizen" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

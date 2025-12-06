@@ -36,7 +36,7 @@ public class TrafficController {
 	{
 		trafficService.getTrafic(id);
 	}
-	@GetMapping("/traffics")
+	@GetMapping
 	@Operation(summary="Récupérer tous un états de traffic disponible")
 	public List<Trafic> getAllTraffic() {
 	    return trafficService.getAllTrafic();

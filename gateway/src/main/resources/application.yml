@@ -1,0 +1,71 @@
+server:
+  port: 8888
+
+spring:
+  grpc:
+    server:
+      enabled: false
+  client:
+    weather-service:
+      address: http://localhost:9090  # L'adresse du service gRPC (WeatherService)
+      negotiation-type: plaintext
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            # ========== SERVICES DIRECTS ==========
+            
+            # 1. REST Service - DIRECT
+            - id: mobility-backend
+              uri: http://localhost:8080/smartCity
+              predicates:
+                - Path=/smartCity/**
+            
+            # 2. GraphQL Service - DIRECT
+            - id: agriculture-backend
+              uri: http://localhost:8081
+              predicates:
+                - Path=/smartCity/graphql
+            
+            # 3. SOAP Services - DIRECT (avec headers)
+            - id: citizen-soap-service
+              uri: http://localhost:8084
+              predicates:
+                - Path=/ws/citizen
+                - Method=POST
+              filters:
+                - SetPath=/ws/citizen
+                - AddRequestHeader=Content-Type, text/xml
+
+            - id: fines-soap-service
+              uri: http://localhost:8085
+              predicates:
+                - Path=/ws/fines
+                - Method=POST
+              filters:
+                - SetPath=/ws/fines
+                - AddRequestHeader=Content-Type, text/xml
+            
+            # ========== SERVICE AVEC PROXY ==========
+            
+            # 4. gRPC Service - VIA PROXY INTERNE
+            - id: weather-grpc-proxy
+              uri: http://localhost:8888  # Proxying vers l'application elle-même
+              predicates:
+                - Path=/smartCity/weather/**
+              filters:
+                - RewritePath=/smartCity/weather/(?<segment>.*), /api/internal/weather/${segment}
+
+# Désactiver Eureka
+eureka:
+  client:
+    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

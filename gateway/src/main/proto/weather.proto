@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.smartCity.weather.services.weather";
+option java_outer_classname = "WeatherProto";
+
+service WeatherService {
+  rpc getWeather (WeatherRequest) returns (WeatherResponse);
+  rpc getWeatherByCityAndDate (WeatherCityAndDateRequest) returns (WeatherResponse);
+  rpc addWeather (AddWeatherRequest) returns (WeatherResponse);
+  rpc deleteWeather (WeatherRequest) returns (DeleteWeatherResponse);
+}
+
+message WeatherRequest {
+  int64 id = 1;
+}
+
+message WeatherCityAndDateRequest {
+  string city = 1;
+  string date = 2;
+}
+
+message Location {
+  int64 id = 1;
+  string city = 2;
+  string country = 3;
+  double latitude = 4;
+  double longitude = 5;
+}
+
+message WeatherResponse {
+  int64 id = 1;
+  Location location = 2;
+  double temperature = 3;
+  double humidity = 4;
+  double pressure = 5;
+  double windSpeed = 6;
+  string windDirection = 7;
+  string date = 8;
+
+}
+
+message DeleteWeatherResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+
+message AddWeatherRequest {
+  int64 locationId = 1;
+  double temperature = 2;
+  double humidity = 3;
+  double pressure = 4;
+  double windSpeed = 5;
+  string windDirection = 6;
+  string date = 7;
+}
+
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://services.finesService.smartCity.com/" xmlns:tns="http://services.finesService.smartCity.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="addFine" type="tns:addFine"/>
+
+    <xs:element name="addFineResponse" type="tns:addFineResponse"/>
+
+    <xs:element name="fine" type="tns:fine"/>
+
+    <xs:element name="getFine" type="tns:getFine"/>
+
+    <xs:element name="getFineByIdFineAndIdCitizen" type="tns:getFineByIdFineAndIdCitizen"/>
+
+    <xs:element name="getFineByIdFineAndIdCitizenResponse" type="tns:getFineByIdFineAndIdCitizenResponse"/>
+
+    <xs:element name="getFineResponse" type="tns:getFineResponse"/>
+
+    <xs:element name="getFines" type="tns:getFines"/>
+
+    <xs:element name="getFinesResponse" type="tns:getFinesResponse"/>
+
+    <xs:complexType name="getFines">
+        <xs:sequence/>
+    </xs:complexType>
+
+    <xs:complexType name="getFinesResponse">
+        <xs:sequence>
+            <xs:element name="return" type="tns:fine" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="fine">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="amount" type="xs:double"/>
+            <xs:element name="reason" type="xs:string" minOccurs="0"/>
+            <xs:element name="paid" type="xs:boolean"/>
+            <xs:element name="citizen_id" type="xs:long" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="getFine">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="getFineResponse">
+        <xs:sequence>
+            <xs:element name="return" type="tns:fine" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="addFine">
+        <xs:sequence>
+            <xs:element name="fine" type="tns:fine" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="addFineResponse">
+        <xs:sequence>
+            <xs:element name="return" type="tns:fine" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="getFineByIdFineAndIdCitizen">
+        <xs:sequence>
+            <xs:element name="idFine" type="xs:long" minOccurs="0"/>
+            <xs:element name="idCitizen" type="xs:long" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="getFineByIdFineAndIdCitizenResponse">
+        <xs:sequence>
+            <xs:element name="return" type="tns:fine" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+
