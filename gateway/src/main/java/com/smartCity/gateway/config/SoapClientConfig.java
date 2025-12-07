@@ -28,6 +28,9 @@ public class SoapClientConfig {
 
     @Bean
     public Jaxb2Marshaller fineMarshaller() {
+
+
+
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setContextPath("com.smartCity.gateway.entities.fines");
         return marshaller;

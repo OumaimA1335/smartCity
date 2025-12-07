@@ -33,6 +33,11 @@ public class WeatherGrpcProxyController {
     /**
      * Méthode GET pour récupérer la météo par ID
      */
+
+
+
+
+
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Map<String, Object>>> getWeatherById(@PathVariable Integer id) {
         return Mono.fromCallable(() -> {
