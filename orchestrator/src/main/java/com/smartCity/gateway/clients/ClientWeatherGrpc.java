@@ -6,6 +6,7 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
@@ -16,15 +17,13 @@ import java.util.Map;
 
 import static reactor.netty.http.HttpConnectionLiveness.log;
 
-@RestController
-@RequestMapping("/weather-backend")
-public class WeatherGrpcProxyController {
+@Component
+public class ClientWeatherGrpc {
     
     private final ManagedChannel channel;
     //crée stub
     WeatherServiceGrpc.WeatherServiceBlockingStub stub;
-    public WeatherGrpcProxyController() {
-        // Connexion au service gRPC (localhost:9090)
+    public ClientWeatherGrpc() {
         this.channel = ManagedChannelBuilder.forAddress("localhost", 9090)
             .usePlaintext()  // Pour développement seulement
             .build();
@@ -34,12 +33,7 @@ public class WeatherGrpcProxyController {
      * Méthode GET pour récupérer la météo par ID
      */
 
-
-
-
-
-    @GetMapping("/{id}")
-    public Mono<ResponseEntity<Map<String, Object>>> getWeatherById(@PathVariable Integer id) {
+    public Mono<ResponseEntity<Map<String, Object>>> getWeatherById( Integer id) {
         return Mono.fromCallable(() -> {
             try {
 
@@ -75,8 +69,8 @@ public class WeatherGrpcProxyController {
         }).subscribeOn(Schedulers.boundedElastic());
     }
 
-    @GetMapping("/{city}/{date}")
-    public Mono<ResponseEntity<Map<String, Object>>>getWeatherByCityAndDate(@PathVariable String city, @PathVariable String date) {
+
+    public Mono<ResponseEntity<Map<String, Object>>>getWeatherByCityAndDate( String city, String date) {
         return Mono.fromCallable(() -> {
             try {
 

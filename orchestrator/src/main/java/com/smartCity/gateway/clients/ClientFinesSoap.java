@@ -9,15 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ws.client.core.WebServiceTemplate;
-import reactor.core.publisher.Mono;
 
 import javax.xml.namespace.QName;
 
-@RestController
-@RequestMapping("/fines")
-public class ClientSoapController {
+@Component
+public class ClientFinesSoap {
 
     @Autowired
     @Qualifier("finesServiceTemplate")
@@ -28,8 +27,7 @@ public class ClientSoapController {
     private WebServiceTemplate citizensTemplate;
 
 
-    @PostMapping("/addcitizen")
-    public ResponseEntity<?> addCitizen(@RequestBody Citizen citizen) {
+    public ResponseEntity<?> addCitizen( Citizen citizen) {
         try {
             // Création de l'objet request
             AddCitizen addCitizen = new AddCitizen();
@@ -60,8 +58,7 @@ public class ClientSoapController {
 
 
 
-    @PostMapping("/addfines")
-    public ResponseEntity<?> addFine(@RequestBody Fine fine) {
+    public ResponseEntity<?> addFine( Fine fine) {
         try {
             // Création de l'objet request
             AddFine addFine = new AddFine();
@@ -90,8 +87,7 @@ public class ClientSoapController {
         }
     }
 
-    @GetMapping("/getCitizenFines/{id}")
-    public ResponseEntity<?> getCitizenFines(@PathVariable Long id) {
+    public ResponseEntity<?> getCitizenFines( Long id) {
         // Crée la requête
         GetCitizenFines request = new GetCitizenFines();
         request.setId(id);
@@ -110,8 +106,7 @@ public class ClientSoapController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/getFine/{idFine}/{idCitizen}")
-    public ResponseEntity<?> getFine(@PathVariable Long idFine, @PathVariable Long idCitizen) {
+    public ResponseEntity<?> getFine( Long idFine,  Long idCitizen) {
         // Crée la requête
         GetFineByIdFineAndIdCitizen request = new GetFineByIdFineAndIdCitizen();
         request.setIdFine(idFine);
@@ -124,6 +119,7 @@ public class ClientSoapController {
         // Appel SOAP
         JAXBElement<GetFineByIdFineAndIdCitizenResponse> responseElement =
                 (JAXBElement<GetFineByIdFineAndIdCitizenResponse>) finesTemplate.marshalSendAndReceive(root);
+
 
         // Récupère le corps de la réponse
         GetFineByIdFineAndIdCitizenResponse response = responseElement.getValue();

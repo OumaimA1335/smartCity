@@ -73,7 +73,7 @@ public class AgricultureService {
                 });
     }
 
-    public Mono<Operation> assignProduceToOperationPlan(Integer produceId, Integer planId) {
+    public Mono<Operation> assignProduceToOperationPlan(Long produceId, Long planId) {
 
         String query = """
         mutation AssignProduceToOperationPlan($produceId: ID!, $planId: ID!) {
@@ -122,6 +122,29 @@ public class AgricultureService {
                     return objectMapper.convertValue(produceByIdData, Produce.class);
                 });
     }
+    public Mono<Produce> getProduceByName(String name) {
+        String query = """
+        query GetProduceByName($name: String!) {
+            getProduceByName(name: $name) {
+                id
+                name
+                quantityPesticides
+                quotaMaxPesticides
+            }
+        }
+        """;
+
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("name", name);
+
+        return sendGraphQLRequest(query, variables)
+                .map(response -> {
+                    Map<String, Object> data = (Map<String, Object>) response.get("data");
+                    Map<String, Object> produceByNameData = (Map<String, Object>) data.get("getProduceByName");
+                    return objectMapper.convertValue(produceByNameData, Produce.class);
+                });
+    }
+
 
     public Mono<List<Produce>> getAllProduces() {
 
@@ -150,8 +173,27 @@ public class AgricultureService {
                             .toList();
                 });
     }
+    public Mono<Operation> getOperationPlanByOperationType(String operationType) {
+        String query = """
+        query  GetOperationByOperationType($OperationType: String!) {
+             getOperationByOperationType(OperationType: $OperationType) {
+                id
+                operationType
+                plannedDate
+            }
+        }
+        """;
 
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("OperationType", operationType);
 
+        return sendGraphQLRequest(query, variables)
+                .map(response -> {
+                    Map<String, Object> data = (Map<String, Object>) response.get("data");
+                    Map<String, Object> operationData = (Map<String, Object>) data.get("getOperationByOperationType");
+                    return objectMapper.convertValue(operationData, Operation.class);
+                });
+    }
     private Mono<Map> sendGraphQLRequest(String query, Map<String, Object> variables) {
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("query", query);

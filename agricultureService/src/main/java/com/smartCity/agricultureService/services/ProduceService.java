@@ -34,6 +34,10 @@ public class ProduceService {
 	{
 		return produceRepository.findById(id);
 	}
+	public Produce getProduceByName(String name)
+	{
+		return produceRepository.findByName(name);
+	}
 	public List<Produce> getProduces()
 	{
 		return produceRepository.findAll();

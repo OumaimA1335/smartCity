@@ -9,4 +9,5 @@ import com.smartCity.agricultureService.entities.Produce;
 
 public interface OperationPlanRepository extends JpaRepository<OperationPlan, Long> {
 	  List<OperationPlan> findByProducesOperation_Id(Long produceId);
+	  OperationPlan findByOperationType(String operationType);
 }

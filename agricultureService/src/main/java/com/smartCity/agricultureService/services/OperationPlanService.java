@@ -45,4 +45,8 @@ public class OperationPlanService {
        operation.getProducesOperation().add(produce);
        return operationRepo.save(operation);
    }
+   public OperationPlan getOperationByOperationType(String operationType)
+   {
+	   return operationRepo.findByOperationType(operationType);
+   }
 }

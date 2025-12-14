@@ -37,6 +37,11 @@ public class OperationController {
 	{
 		return operationService.getAllPlans();
 	}
+	@QueryMapping
+	public OperationPlan getOperationByOperationType (@Argument String OperationType)
+	{
+		return operationService.getOperationByOperationType(OperationType);
+	}
 	 @MutationMapping
 	  public OperationPlan  assignProduceToOperationPlan(@Argument Long produceId,@Argument Long planId){
 	      return operationService.assignProduceToOperationPlan(planId, produceId);

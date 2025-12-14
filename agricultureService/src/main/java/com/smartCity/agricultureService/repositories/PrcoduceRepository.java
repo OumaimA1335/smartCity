@@ -11,5 +11,6 @@ import com.smartCity.agricultureService.entities.Produce;
 public interface PrcoduceRepository extends JpaRepository<Produce, Long> {
   
 	  List<Produce> findByFarms_Id(Long farmId);
+	  Produce findByName(String name);
 	 
 }

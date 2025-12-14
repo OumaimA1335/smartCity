@@ -33,10 +33,12 @@ type Query {
   # Produce
   produces: [Produce!]!
   produceById(id: ID!): Produce
+  getProduceByName(name :String!): Produce
 
   # OperationPlan
   operationPlans: [OperationPlan!]!
   operationPlanById(id: ID!): OperationPlan
+  getOperationByOperationType(OperationType :String!) : OperationPlan
 }
 
 # ===== Mutations =====

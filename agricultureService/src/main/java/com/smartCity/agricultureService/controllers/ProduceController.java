@@ -34,6 +34,11 @@ public class ProduceController {
 	{
 		return produceSer.getProduces();
 	}
+	@QueryMapping
+	public Produce getProduceByName (@Argument String name)
+	{
+		return produceSer.getProduceByName(name);
+	}
 	 @SchemaMapping(typeName = "Produce", field = "operations")
 	 public List<OperationPlan> getOperation(Produce produce) {
 	     return produce.getOperations() != null ? produce.getOperations() : new ArrayList<>();
