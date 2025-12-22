@@ -1,28 +1,40 @@
 🌆 Smart City Microservices Project
 📌 Overview
 
-This project is a Smart City platform built using a microservices architecture with Spring Boot (Java).
-The system is designed to be scalable, modular, and loosely coupled, where each microservice is responsible for a specific business domain.
+This project is a Smart City platform developed using a microservices architecture with Spring Boot (Java).
+Each service is independent, loosely coupled, and communicates through different protocols depending on its use case.
 
-An API Gateway is used for routing and centralized access, and an Orchestrator manages the coordination and communication between microservices.
+The system includes an API Gateway for routing and an Orchestrator Service to manage business workflows between microservices.
 
 🧱 Microservices Architecture
 
-The platform is composed of four core microservices, an API Gateway, and an Orchestrator Service:
+The platform is composed of multiple microservices, each responsible for a specific domain:
 
 🚗 Mobility Microservice
 
-Technologies: REST & SOAP
+Technology: REST
 
 Responsibilities:
 
-Manage mobility services
+Manage mobility-related services
 
-Handle fines and transportation operations
+Handle transportation operations
 
 Communication:
 
 REST APIs
+
+💸 Fines Microservice
+
+Technology: SOAP
+
+Responsibilities:
+
+Manage fines and penalties
+
+Provide legacy-compatible SOAP services
+
+Communication:
 
 SOAP Web Services
 
@@ -34,7 +46,7 @@ Responsibilities:
 
 Manage agricultural data
 
-Flexible data querying using GraphQL
+Efficient data querying using GraphQL
 
 🌦 Weather Microservice
 
@@ -42,7 +54,7 @@ Technology: gRPC
 
 Responsibilities:
 
-Provide real-time weather information
+Provide weather information
 
 High-performance inter-service communication
 
@@ -54,11 +66,9 @@ Responsibilities:
 
 Central entry point for all client requests
 
-Request routing to appropriate microservices
+Route requests to appropriate microservices
 
-Load balancing and request forwarding
-
-Improved security and separation of concerns
+Simplify client-side communication
 
 🧠 Orchestrator Service
 
@@ -68,11 +78,9 @@ Responsibilities:
 
 Orchestrate workflows across multiple microservices
 
-Coordinate inter-service communication
+Coordinate communication between services
 
-Aggregate responses from different services
-
-Manage business processes spanning multiple domains
+Aggregate responses and manage business logic spanning domains
 
 🛠 Technologies Used
 
@@ -90,7 +98,7 @@ GraphQL
 
 gRPC
 
-Infrastructure:
+Containerization:
 
 Docker
 
@@ -104,15 +112,15 @@ Version Control:
 
 Git & GitHub
 
-🐳 Containerization
+🐳 Containerization & Deployment
 
-Each microservice is containerized using Docker
+Each microservice runs in its own Docker container
 
 Databases are containerized
 
-Docker Compose orchestrates all services for local deployment
+Docker Compose is used to orchestrate services locally
 
-Run the project:
+Start the system:
 
 docker-compose up --build
 
@@ -120,7 +128,7 @@ docker-compose up --build
 
 REST, SOAP, and GraphQL APIs tested using Postman
 
-gRPC services tested with compatible gRPC clients
+gRPC services tested using appropriate gRPC clients
 
 📂 Project Structure (Example)
 smartcity-project/
@@ -128,6 +136,7 @@ smartcity-project/
 ├── api-gateway/
 ├── orchestrator-service/
 ├── mobility-service/
+├── fines-service/
 ├── agriculture-service/
 ├── weather-service/
 ├── docker-compose.yml
@@ -135,17 +144,17 @@ smartcity-project/
 
 🚀 Key Features
 
+Clear separation of concerns
+
 API Gateway for centralized routing
 
-Orchestrator for service coordination
+Orchestrator for cross-service workflows
 
 Multiple communication protocols
 
-Fully containerized microservices
-
-Scalable and maintainable architecture
+Fully containerized architecture
 
 👩‍💻 Author
 
 Oumaima Chelly
-Junior Software Engineer – Java & Microservices<img width="1536" height="1024" alt="ChatGPT Image 11 déc  2025, 23_06_30" src="https://github.com/user-attachments/assets/00eda3ed-5221-46b6-a397-2d6af2161f01" />
+Junior Software Engineer – Java & Microservices
