@@ -137,7 +137,8 @@ smartcity-project/
 ├── orchestrator-service/
 ├── mobility-service/
 ├── fines-service/
-├── agriculture-service/
+├── agriculture-service/<img width="1536" height="1024" alt="ChatGPT Image 11 déc  2025, 23_06_30" src="https://github.com/user-attachments/assets/e4ae1af5-ab1e-4997-a292-727e3ed02e5e" />
+
 ├── weather-service/
 ├── docker-compose.yml
 └── README.md
