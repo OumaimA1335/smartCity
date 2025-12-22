@@ -97,4 +97,5 @@ The platform is composed of multiple microservices, each responsible for a speci
 docker-compose up --build
 
 
-<img width="1536" height="1024" alt="ChatGPT Image 11 déc  2025, 23_06_30" src="https://github.com/user-attachments/assets/64e5180a-8c12-4953-a3a5-9037baae98d8" />
+<img width="1536" height="1024" alt="ChatGPT Image 11 déc  2025, 23_06_30" src="https://github.com/user-attachments/assets/99470ad4-666f-4080-9edd-394ef19756d2" />
+
